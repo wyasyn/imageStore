@@ -3,6 +3,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import os
 import uuid  # To generate unique filenames
+from waitress import serve
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -35,4 +36,4 @@ def serve_image(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8000)
+    serve(app, host="0.0.0.0", port=8000)
